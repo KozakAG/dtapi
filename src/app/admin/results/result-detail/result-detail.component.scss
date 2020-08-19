@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+    th {
+        text-align: center;
+    }
+    td {
+        border-left: 2px solid white;
+        padding: 0.5em;
+    }
+}
+tr > td:first-child {
+    text-align: center;
+}
+tr > td:last-child {
+    text-align: center;
+}
+.trueAnswer {
+    background-color: #e6ffe6;
+}
+.falseAnswer {
+    background-color: #ffe6e6;
+}
+mat-icon {
+    cursor: pointer;
+}

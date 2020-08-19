@@ -1,0 +1,50 @@
+mat-form-field {
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+  align-items: center;
+}
+
+button {
+  margin-left: 5px;
+}
+
+table {
+  width: 100%;
+}
+
+mat-icon {
+  cursor: pointer;
+
+  &:hover {
+    &[aria-label="edit"] {
+      color: orange;
+    }
+
+    &[aria-label="delete"] {
+      color: red;
+    }
+  }
+}
+
+.search-box {
+  width: 200px;
+  margin: 20px;
+}
+
+.showRatesSum {
+  margin-top: 2px;
+  display: block;
+  padding: 8px;
+  border-bottom: 1px solid lightgrey;
+  background: white;
+}

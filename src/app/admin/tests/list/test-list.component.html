@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="header">
+    <h3>Тести <span *ngIf="currentSubjectId">з предмета: {{ getSubjectNameById(currentSubjectId) }}</span></h3>
+    <span class="fill-space"></span>
+    <button mat-raised-button color="prime" (click)="openAddTestDialog()" aria-label="add">
+      <mat-icon aria-hidden="false" aria-label="add">add</mat-icon>
+      Додати тест
+    </button>
+  </div>
+  <div class="search-box">
+    <mat-select [ngModel]="currentSubjectId" (ngModelChange)="onChangeSubject($event)" name="current_subject">
+      <mat-option [value]="subject.subject_id"
+                  *ngFor="let subject of listSubjects">{{ subject.subject_name }}</mat-option>
+    </mat-select>
+  </div>
+  <div class="mat-elevationg-z8">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      #table
+      class="my-table">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>№</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ paginator.pageSize * paginator.pageIndex + i + 1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Назва</th>
+        <td mat-cell *matCellDef="let testItem">{{ testItem.test_name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef>Предмет</th>
+        <td mat-cell *matCellDef="let testItem">{{ getSubjectNameById(testItem.subject_id) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tasks">
+        <th mat-header-cell *matHeaderCellDef>Кількість тестів</th>
+        <td mat-cell *matCellDef="let testItem">
+          {{ testItem.tasks }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Дії</th>
+        <td mat-cell *matCellDef="let testItem" class="action-link">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="edit"
+            matTooltip="Редагувати"
+            (click)="openEditTestDialog(testItem)"
+          >
+            edit
+          </mat-icon>
+
+          <mat-icon
+            aria-hidden="false"
+            aria-label="delete"
+            matTooltip="Видалити"
+            (click)="openDeleteDialog(testItem)"
+          >
+            delete
+          </mat-icon>
+
+          <mat-icon
+            aria-hidden="false"
+            aria-label="description"
+            matTooltip="Параметри теста"
+            (click)="navigateToTestDetail(testItem.test_id)"
+          >
+            description
+          </mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="export"
+            matTooltip="Експортувати завдання тесту"
+            (click)="openModal(testItem.test_id)"
+          >
+            import_export
+          </mat-icon>
+
+          <a [routerLink]="[testItem.test_id, 'questions']" class="question-link">
+            <mat-icon
+              aria-hidden="false"
+              matTooltip="Питання"
+            >
+              list
+            </mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

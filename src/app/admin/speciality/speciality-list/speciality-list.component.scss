@@ -1,0 +1,43 @@
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.addButton {
+  margin: 10px;
+}
+a:hover {
+  cursor: pointer;
+}
+.material-icons.delete:hover {
+  color: red;
+}
+
+.material-icons.edit:hover {
+  color: orange;
+}
+mat-form-field {
+  width: 100%;
+}
+table {
+  width: 100%;
+}
+.toolbar {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 1em 0;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    padding: 15px;
+  }
+}

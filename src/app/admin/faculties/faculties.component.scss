@@ -1,0 +1,57 @@
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+mat-icon {
+  cursor: pointer;
+
+  &:hover {
+    &[aria-label="edit"] {
+      color: orange;
+    }
+    &[aria-label="delete"] {
+      color: red;
+    }
+  }
+}
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.btn {
+  width: 200px;
+  margin: 10px 0;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.material-icons.delete:hover {
+  color: red;
+}
+
+.material-icons.edit:hover {
+  color: orange;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-snack-bar-container {
+  text-align: center;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+  align-items: center;
+}
+
+.mat-dialog-actions {
+  padding: 0px 0;
+  min-height: 9px;
+  margin-bottom: 0px;
+}

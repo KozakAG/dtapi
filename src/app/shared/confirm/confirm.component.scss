@@ -1,0 +1,22 @@
+mat-divider {
+  margin-top: 20px;
+}
+h3, .content {
+  text-align: center;
+}
+mat-dialog-actions {
+  width: 100%;
+}
+button {
+  width: calc(50% - 10px);
+  &:first-of-type {
+      margin-right: 10px;
+  }
+}
+mat-dialog-content {
+  display: flex;
+  justify-content: space-between;
+}
+.icon {
+  padding: 0px 10px;
+}

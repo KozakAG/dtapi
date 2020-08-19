@@ -1,0 +1,25 @@
+
+<section class="header" >
+  <h3>Факультети</h3>
+  <span class="fill-space"></span>
+  <button
+  mat-stroked-button
+  class="btn" (click)='openFacultyModal()'>
+    <mat-icon aria-hidden="false" aria-label="add">add</mat-icon>
+    Додати факультет</button>
+</section>
+
+<section class="container">
+
+<app-mat-table 
+[data]="faculties" 
+[columns]="columns"  
+[countRecords]="length"
+[filter]='true'
+[entity]="'Faculty'"
+(action)='getAction($event)' 
+(pageEvent)='pageUpdate()'>
+</app-mat-table>
+
+</section>
+

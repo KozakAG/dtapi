@@ -1,0 +1,39 @@
+<h3>{{ !data ? ("subjects.formHeaderAdd" | translate) : ("subjects.formHeaderEdit"| translate) }} предмета</h3>
+
+<form [formGroup]="addSubject" class="form-control " #addsubject="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+
+        <mat-label>{{'subjects.formInputLabel' | translate}}</mat-label>
+
+
+        <input matInput formControlName="subject_name" placeholder="{{'subjects.formInputPlaceholder' | translate}}"/>
+
+        <button type="button" mat-button *ngIf="subject_name.value" matSuffix mat-icon-button aria-label="Clear" (click)="subject_name.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+        <mat-error *ngIf="subject_name.invalid && (subject_name.dirty || subject_name.touched)">
+            {{ getErrorMessage(subject_name) }}
+        </mat-error>
+
+        <mat-hint></mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>{{'subjects.formTextAreaLabel' | translate}}</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="10" formControlName="subject_description" placeholder="{{'subjects.formTextAreaPlaceholder' | translate}}">
+        </textarea>
+        <button type="button" mat-button *ngIf="subject_description.value" matSuffix mat-icon-button aria-label="Clear" (click)="subject_description.reset()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="subject_description.invalid &&(subject_description.dirty || subject_description.touched)">
+            {{ getErrorMessage(subject_description) }}
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="btn" [disabled]="!data ? addSubject.invalid : addSubject.invalid || !(subject_name.dirty || subject_description.dirty)" type="submit">
+            {{ !data ? ("subjects.formAddBtn" | translate) : ("subjects.formEditBtn" | translate) }}
+        </button>
+    <button cdkFocusInitial mat-flat-button color="warn" type="button" class="btn" (click)="onDismiss()">
+    {{'subjects.formCencelBtn' | translate}}
+  </button>
+</form>

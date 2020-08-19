@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="title-box">
+    <h3>Результати тестувань <span *ngIf="subjectName$">з предмету: {{subjectName$}}</span></h3>
+  </div>
+  <div class="search-box">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Група</mat-label>
+        <mat-select formControlName="group_id" placeholder="Виберіть групу">
+          <mat-option *ngFor="let item of listGroups" [value]="item.group_id">
+            {{ item.group_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          Виберіть групу
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Тест</mat-label>
+        <mat-select formControlName="test_id" placeholder="Виберіть тест">
+          <mat-option *ngFor="let item of listTestsByGroup" [value]="item.test_id">
+            {{ item.test_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          Виберіть тест
+        </mat-error>
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="submit"
+        [disabled]="searchForm.invalid"
+      >
+        <mat-icon aria-hidden="false" aria-label="search">search</mat-icon>
+        Показати результати
+      </button>
+    </form>
+  </div>
+  <div [hidden]="!dataSource.data.length">
+    <div class="filter-box">
+      <form [formGroup]="filterForm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Фільтрація результатів</mat-label>
+          <mat-select formControlName="filter_type">
+            <mat-option [value]="1">
+              Всі результати
+            </mat-option>
+            <mat-option [value]="2">
+              Кращий результат
+            </mat-option>
+            <mat-option [value]="3">
+              Гірший результат
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-stroked-button (click)="createChart()">Статистика тесту</button>
+        <button mat-stroked-button (click)="createGroupChart()">Успішність групи</button>
+        <button mat-stroked-button (click)="createGroupsChart()">Успішність по групам</button>
+      </form>
+    </div>
+    <table mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>№</th>
+        <td mat-cell *matCellDef="let result; let rIndex = index">
+          {{ rIndex + 1 }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="student">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ПІБ студента</th>
+        <td mat-cell *matCellDef="let result">
+          {{ result.student }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="result">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Бал</th>
+        <td mat-cell *matCellDef="let result">{{ result.result }}</td>
+      </ng-container>
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef>Оцінка</th>
+        <td mat-cell *matCellDef="let result">
+          {{ result.score }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="session_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата</th>
+        <td mat-cell *matCellDef="let result">{{ result.session_date }}</td>
+      </ng-container>
+      <ng-container matColumnDef="start_time">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Початок</th>
+        <td mat-cell *matCellDef="let result">{{ result.start_time }}</td>
+      </ng-container>
+      <ng-container matColumnDef="duration" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Тривалість</th>
+        <td mat-cell *matCellDef="let result">
+          {{ result.duration }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>Статистика</th>
+        <td mat-cell *matCellDef="let result">
+          <mat-icon
+            aria-label="menu"
+            matTooltip="Деталі тестування"
+            (click)="openDetailResult(result, subjectName$, result.questions)">
+            menu</mat-icon>
+          <mat-icon 
+            aria-label="bar_chart"
+            matTooltip="Результати за рівнями"
+            (click)="openChartResultsByLevel(result)">
+            bar_chart
+          </mat-icon>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

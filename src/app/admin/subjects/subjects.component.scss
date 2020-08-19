@@ -1,0 +1,55 @@
+h3 {
+    text-align: center;
+}
+
+.toolbar {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    padding: 1em 0;
+}
+
+.filter {
+    width: 100%;
+    font-size: 16px;
+    padding: 0 1%;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-elevation-z9.table {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.mat-form-field {
+    font-size: 14px;
+}
+
+.delete,
+.edit,
+.date_range,
+.assignment_turned_in {
+    margin-right: 10%;
+}
+
+.delete:hover,
+.edit:hover,
+.date_range:hover,
+.assignment_turned_in:hover {
+    cursor: pointer;
+    &.delete {
+        color: red;
+    }
+    &.edit {
+        color: orange;
+    }
+    &.date_range,
+    &.assignment_turned_in {
+        color: green;
+    }
+}

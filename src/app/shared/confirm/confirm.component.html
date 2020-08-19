@@ -1,0 +1,14 @@
+<h3 mat-dialog-title>{{'shared.confirmHeader' | translate}}</h3>
+<mat-dialog-content>
+  <div class="icon"><mat-icon color="warn">priority_high</mat-icon></div>
+  <div class="content">{{ data.content }}</div>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="center">
+   <button  mat-stroked-button color="primary" mat-dialog-close="true">
+    {{'shared.confirmBtnConfirm' | translate}}
+  </button>
+  <button  mat-stroked-button color="primary" mat-dialog-close cdkFocusInitial>
+    {{'shared.confirmBtnCancel' | translate}}
+  </button>
+</mat-dialog-actions>
